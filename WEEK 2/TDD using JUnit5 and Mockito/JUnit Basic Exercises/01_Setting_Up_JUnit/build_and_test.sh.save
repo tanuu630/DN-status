@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Exit immediately if a command fails
+set -e
+
+# Paths
+SRC_MAIN="Code/src/main/java"
+SRC_TEST="Code/src/test/java"
+OUT_DIR="out"
+LIB_DIR="lib"
+
+# Make sure output directory exists
+mkdir -p $OUT_DIR
+
+# Compile main class
+echo "🔧 Compiling Calculator.java..."
+javac -cp "$LIB_DIR/*" -d $OUT_DIR $SRC_MAIN/com/tanuexample/Calculator.java
+
+# Compile test class
+echo "🧪 Compiling CalculatorTest.java..."
+javac -cp "$LIB_DIR/*:$OUT_DIR" -d $OUT_DIR $SRC_TEST/com/tanuexample/CalculatorTest.java
+
+# Run test
+echo "🚀 Running JUnit test..."
+java -cp "$LIB_DIR/*:$OUT_DIR" org.junit.runner.JUnitCore com.tanuexample.CalculatorTest
+
+chmod +x build_and_test.sh
+
+./build_and_test.sh
+
+
