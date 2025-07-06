@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for BasicSpringApp" enabled="true">
+        <sourceOutputDir name="../../../../../Week 3/Spring Core and Maven/Exercise 1 Configuring a Basic Spring Application/Code/LibraryManagementSystem/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../../../../Week 3/Spring Core and Maven/Exercise 1 Configuring a Basic Spring Application/Code/LibraryManagementSystem/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="BasicSpringApp" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
