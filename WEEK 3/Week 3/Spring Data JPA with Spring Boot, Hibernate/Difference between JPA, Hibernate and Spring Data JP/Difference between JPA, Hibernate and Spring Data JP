@@ -1,0 +1,59 @@
+Java Persistence API (JPA)
+	• A specification under JSR 338 for mapping Java objects to relational database tables.
+	• Defines interfaces and annotations like @Entity, @Id, and EntityManager.
+	• Does not provide an actual implementation—only a set of standards to follow.
+	• Requires an implementation like Hibernate to function.
+
+Hibernate
+	• A widely-used ORM framework and one of the implementations of JPA.
+	• Translates Java classes and objects into database tables and rows.
+	• Provides additional features beyond JPA, like caching, fetching strategies, etc.
+	• Developers are responsible for managing session and transaction handling unless integrated with Spring.
+
+Spring Data JPA
+	• A part of the Spring ecosystem that simplifies database operations using JPA.
+	• Does not implement JPA, but works on top of a JPA provider like Hibernate.
+	• Eliminates boilerplate code by allowing interface-based repository definitions.
+	• Offers built-in transaction management and auto-generated queries using method names.
+
+Code Comparison:
+
+Hibernate
+
+java CODE:
+
+public Integer addEmployee(Employee employee){
+    Session session = factory.openSession();
+    Transaction tx = null;
+    Integer employeeID = null;
+    try {
+        tx = session.beginTransaction();
+        employeeID = (Integer) session.save(employee);
+        tx.commit();
+    } catch (Exception e) {
+        if (tx != null) tx.rollback();
+    } finally {
+        session.close();
+    }
+    return employeeID;
+}
+	• Manual handling of session and transaction.
+	• Requires more lines of code for basic operations.
+
+Spring Data JPA
+EmployeeRepository.java
+
+java code:
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+EmployeeService.java
+
+java code:
+@Autowired
+private EmployeeRepository employeeRepository;
+@Transactional
+public void addEmployee(Employee employee) {
+    employeeRepository.save(employee);
+}
+	• Uses JpaRepository to reduce the need for boilerplate code.
+	• Spring automatically manages the transaction and implementation.
